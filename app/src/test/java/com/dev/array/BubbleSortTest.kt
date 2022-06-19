@@ -10,7 +10,7 @@ class BubbleSortTest {
     @Test
     fun test() {
         // GIVEN
-        val array = arrayOf(38, 18, 23, 4, 5, 47, 39, 3, 8, 15)
+        val array = intArrayOf(38, 18, 23, 4, 5, 47, 39, 3, 8, 15)
 
         // WHEN
         bubbleSort(array)
@@ -19,7 +19,7 @@ class BubbleSortTest {
         assert("[3, 4, 5, 8, 15, 18, 23, 38, 39, 47]" == array.contentToString())
     }
 
-    private fun bubbleSort(array: Array<Int>) {
+    private fun bubbleSort(array: IntArray) {
         var needChange: Boolean
         for (i in 1..array.lastIndex) {
             needChange = false
