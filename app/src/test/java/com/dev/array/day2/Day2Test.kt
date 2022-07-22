@@ -2,69 +2,53 @@ package com.dev.array.day2
 
 import org.junit.Test
 
+// Ref: https://toutiao.io/posts/43slch7/preview
 class Day2Test {
 
     @Test
-    fun test1() {
-        // 最小堆法（每个父节点都小于子节点）
-        val array = arrayOf(7, 5, 15, 3, 17, 2, 20, 24, 1, 9, 12, 8)
+    fun test() {
+        // Given
+        val array = intArrayOf(7, 5, 15, 3, 17, 2, 20, 24, 1, 9, 12, 8)
 
-        assert(12 == getResultViaMinHeap(array, 5))
+        assert(12 == findKthLargest(array, 5))
     }
 
-    private fun getResultViaMinHeap(array: Array<Int>, k: Int): Int {
-        // 用前 k 个元素构建最小堆
-        buildHeap(array, k)
+    private fun findKthLargest(array: IntArray, k: Int): Int {
+        val targetIndex = array.size - k
+        var low = 0
+        var high = array.lastIndex
 
-        // 遍历数组，和堆顶比较
-        for (i in k..array.lastIndex) {
-            if (array[i] > array[0]) {
-                array[0] = array[i]
-                downAdjust(array, 0, k)
+        // point 左边是小的数，右边是大的数
+        // 假设求第5大的元素，那么 point 应该等于 7，如果 point = 10，那么 point 应该回退
+        // 反之亦然
+        while (true) {
+            val point = partition(array, low, high)
+            when {
+                point < targetIndex -> low = point + 1
+                point == targetIndex -> return array[point]
+                else -> high = point - 1
             }
-        }
-
-        // 返回堆定元素
-        return array[0]
-    }
-
-    private fun buildHeap(array: Array<Int>, heapSize: Int) {
-        // 从最后一个非叶子结点开始，依次下沉调整
-        val size: Int = (heapSize - 2) / 2
-        for (i in size downTo 0) {
-            downAdjust(array, i, heapSize)
         }
     }
 
-    /** 堆的内部调整，满足最小堆，堆永远维持 length 大小 */
-    private fun downAdjust(array: Array<Int>, index: Int, length: Int) {
-        // 记录父节点的下标
-        var indexShadow = index
+    /**
+     * 分区函数，将 array[high] 作为 pivot 分区点
+     */
+    private fun partition(array: IntArray, low: Int, high: Int): Int {
+        var point = low
+        val pivot = array[high] // 拿最后的一个值做标杆
 
-        // 记录左子节点的下标
-        var childIndex = (2 * indexShadow) + 1
-
-        // temp 记录父结点的值
-        val temp = array[indexShadow]
-
-        // length 是堆的有效长度
-        while (childIndex < length) {
-
-            // 如果有右节点，且右节点小于左节点的值，则定位到右节点
-            if (((childIndex + 1) < length) && (array[childIndex + 1] < array[childIndex])) {
-                childIndex++
+        // 这一轮下来比 pivot 小的值都找出来了，已经分好区了
+        for (i in low until high) { // 和最后一个值之前的所有值挨个比较
+            //println("i = $i, point = $point, array = ${array.contentToString()}")
+            if (array[i] < pivot) {
+                // 这里交换的目的是为了区分已处理区和非处理区，i 可能在arr[i]>pivot 的时候停下来
+                array[i] = array[point].also { array[point] = array[i] } // i 的值换成比基准值小的
+                point++ // 指针往前进一位，继续找
             }
-
-            // 如果父结点小于任何一个孩子的值，直接跳出
-            if (temp <= array[childIndex]) {
-                break
-            }
-
-            array[indexShadow] = array[childIndex]
-            indexShadow = childIndex
-            childIndex = (2 * indexShadow) + 1
         }
-
-        array[indexShadow] = temp
+        println("point = $point, array = ${array.contentToString()}")
+        array[high] = array[point].also { array[point] = array[high] }
+        return point
     }
 }
