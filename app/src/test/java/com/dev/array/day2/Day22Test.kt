@@ -18,36 +18,37 @@ class Day22Test {
         var low = 0
         var high = array.lastIndex
 
+        // point 左边是小的数，右边是大的数
+        // 假设求第5大的元素，那么 point 应该等于 7，如果 point = 10，那么 point 应该回退
+        // 反之亦然
         while (true) {
-            val i = partition(array, low, high)
+            val point = partition(array, low, high)
             when {
-                i < targetIndex -> low = i + 1
-                i == targetIndex -> return array[i]
-                else -> high = i - 1
+                point < targetIndex -> low = point + 1
+                point == targetIndex -> return array[point]
+                else -> high = point - 1
             }
         }
     }
 
     /**
      * 分区函数，将 array[high] 作为 pivot 分区点
-     * i、j 两个指针，i 作为标记 `已处理区间` 和 `未处理区间` 的分界点，也即 i 左边的（low ~ i-1）都是 `已处理区`。
-     * j 指针遍历数组，当 array[j] 小于 pivot 时，就把 array[j] 放到 `已处理区间` 的尾部，也即是 array[i] 所在位置。
-     * 因此 swap(arr, i, j) 然后 i 指针后移，i++
-     * 直到 j 遍历到数组末尾 array[high]，将 array[i] 和 arr[high]（pivot点） 进行交换，返回下标 i，就是分区点的下标。
-     * */
+     */
     private fun partition(array: IntArray, low: Int, high: Int): Int {
-        var i = low
+        var point = low
         val pivot = array[high] // 拿最后的一个值做标杆
 
         // 这一轮下来比 pivot 小的值都找出来了，已经分好区了
-        for (j in low until high) { // 和最后一个值之前的所有值挨个比较
-            if (array[j] < pivot) {
-                // 这里交换的目的是为了区分已处理区和非处理区，i 可能在arr[j]>pivot 的时候停下来，而j还在不停改变；
-                array[j] = array[i].also { array[i] = array[j] } // i 的值换成比基准值小的
-                i++ // i 指针往前进一位，继续找
+        for (i in low until high) { // 和最后一个值之前的所有值挨个比较
+            //println("i = $i, point = $point, array = ${array.contentToString()}")
+            if (array[i] < pivot) {
+                // 这里交换的目的是为了区分已处理区和非处理区，i 可能在arr[i]>pivot 的时候停下来
+                array[i] = array[point].also { array[point] = array[i] } // i 的值换成比基准值小的
+                point++ // 指针往前进一位，继续找
             }
         }
-        array[high] = array[i].also { array[i] = array[high] }
-        return i
+        println("point = $point, array = ${array.contentToString()}")
+        array[high] = array[point].also { array[point] = array[high] }
+        return point
     }
 }
