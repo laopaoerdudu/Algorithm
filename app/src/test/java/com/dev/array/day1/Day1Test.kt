@@ -10,7 +10,7 @@ class Day1Test {
         val array = intArrayOf(1, 2, 3, 2, 2, 2, 5, 2, 4)
 
         // When
-        val result = bestPractice(array)
+        val result = getResult(array)
 
         // Then
         assert(2 == result)
@@ -38,9 +38,7 @@ class Day1Test {
         var count = 0
         val quit = array.size shr 1
         for (i in 0..array.lastIndex) {
-            println("i -> $i, array[i] -> ${array[i]}")
             for (j in (i + 1)..array.lastIndex) {
-                println("j -> $j, array[j] -> ${array[j]}")
                 if (array[j] == array[i]) {
                     if (count >= quit) {
                         return array[j]
@@ -48,7 +46,6 @@ class Day1Test {
                     count++
                 }
             }
-            println("==============================")
         }
         return -1
     }
@@ -60,12 +57,12 @@ class Day1Test {
             if (!map.containsKey(item)) {
                 map[item] = 1
             } else {
-                map[item] = map[item] as Int + 1
+                map[item] = (map[item] as Int) + 1
             }
         }
 
         for ((key, value) in map) {
-            if (value > (array.size) / 2) {
+            if (value > (array.size shr 1)) {
                 return key
             }
         }
