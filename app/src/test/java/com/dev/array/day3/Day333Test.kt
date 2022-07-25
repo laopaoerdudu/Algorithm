@@ -8,7 +8,7 @@ class Day333Test {
     @Test
     fun test() {
         // GIVEN
-        val array = arrayOf(1, 2, 2, 2, 4)
+        val array = intArrayOf(1, 2, 2, 2, 4)
 
         // WHEN
         val result = binarySearch(array, 2)
@@ -17,23 +17,22 @@ class Day333Test {
         assert(3 == result)
     }
 
-    private fun binarySearch(array: Array<Int>, value: Int): Int {
-        var left = 0
-        var right = array.lastIndex
+    private fun binarySearch(array: IntArray, value: Int): Int {
+        var low = 0
+        var hight = array.lastIndex
 
-        while (left <= right) {
-            val middle = left + ((right - left) shr 1) // 防止溢出，移位也更高效
+        while (low <= hight) {
+            val middle = low + ((hight - low) shr 1) // 防止溢出，移位也更高效
             if(array[middle] > value) {
-                right = middle - 1
+                hight = middle - 1
             } else {
-                left = middle + 1
+                low = middle + 1
             }
         }
 
-        if (right >= 0 && array[right] == value) {
-            return right
+        if (hight >= 0 && array[hight] == value) {
+            return hight
         }
-
         return -1
     }
 }
