@@ -32,20 +32,6 @@ class Day8Test {
     }
 
     private fun plusOne(array: IntArray): IntArray {
-        // 数字加法应该从最后一位开始，所以我们从数组末尾向前遍历
-        for (i in array.lastIndex downTo 0) {
-            if (array[i] != 9) {
-                ++array[i] // 直接加1
-                for (j in i + 1..array.lastIndex) {
-                    array[j] = 0
-                }
-                return array
-            }
-        }
-
-        // array 中所有的元素均为 9
-        return IntArray(array.size + 1).apply {
-            this[0] = 1
-        }
+        return IntArray(2)
     }
 }

@@ -18,21 +18,7 @@ class Day333Test {
     }
 
     private fun binarySearch(array: IntArray, value: Int): Int {
-        var low = 0
-        var hight = array.lastIndex
 
-        while (low <= hight) {
-            val middle = low + ((hight - low) shr 1) // 防止溢出，移位也更高效
-            if(array[middle] > value) {
-                hight = middle - 1
-            } else {
-                low = middle + 1
-            }
-        }
-
-        if (hight >= 0 && array[hight] == value) {
-            return hight
-        }
         return -1
     }
 }

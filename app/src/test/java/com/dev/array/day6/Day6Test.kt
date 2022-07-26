@@ -15,12 +15,6 @@ class Day6Test {
     }
 
     private fun containsDuplicate(array: IntArray): Boolean {
-        Arrays.sort(array)
-        for(i in 0..array.lastIndex) {
-            if (array[i] == array[i + 1]) {
-                return true
-            }
-        }
         return false
     }
 }

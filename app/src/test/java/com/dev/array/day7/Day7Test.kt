@@ -15,33 +15,6 @@ class Day7Test {
     }
 
     private fun intersect(array1: IntArray, array2: IntArray): IntArray {
-        // 这是一个优化细节，检查数组大小并对较小的数组进行哈希映射
-        // 这样可以降低空间复杂度
-        if(array1.size > array2.size) {
-            return intersect(array2, array1)
-        }
-
-        var index = 0
-        var newArray = IntArray(array1.size)
-        val map = mutableMapOf<Int, Int>()
-
-        array1.forEach { value ->
-            map[value] = map.getOrDefault(value, 0) + 1
-        }
-
-        array2.forEach { value ->
-            var count = map.getOrDefault(value, 0)
-            if(count > 0) {
-                newArray[index++] = value
-                count--
-                if (count > 0) {
-                    map[value] = count
-                } else {
-                    map.remove(value)
-                }
-            }
-        }
-
-        return newArray.copyOfRange(0, index)
+        return IntArray(2)
     }
 }
