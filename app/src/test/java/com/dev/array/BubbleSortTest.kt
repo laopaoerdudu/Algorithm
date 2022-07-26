@@ -3,7 +3,7 @@ package com.dev.array
 import org.junit.Test
 
 // 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
-// 针对所有的元素重复以上的步骤，除了最后一个。
+// 针对所有的元素重复以上的步骤
 // 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
 class BubbleSortTest {
 
