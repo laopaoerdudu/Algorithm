@@ -11,13 +11,13 @@ class Day10Test {
         val target = 9
 
         // When
-        val result = solution1(array, target)
+        val result = solution(array, target)
 
         // Then
-        println(result.contentToString())
+        assert("[0, 1]" == result.contentToString())
     }
 
-    private fun solution1(array: IntArray, target: Int): IntArray {
+    private fun solution(array: IntArray, target: Int): IntArray {
         for(i in 0..array.lastIndex) {
             for(j in (i+1)..array.lastIndex) {
                 if (array[i] + array[j] == target) {
