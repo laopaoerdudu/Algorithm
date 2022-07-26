@@ -18,16 +18,16 @@ class Day9Test {
 
     private fun moveZeroes(array: IntArray) {
         val size = array.size
-        var left = 0
-        var right = 0
-        while (right < size) {
+        var non0point = 0
+        var scanPoint = 0
+        while (scanPoint < size) {
             // 右指针不断向右移动，每次右指针指向非零数，则将左右指针对应的数交换，同时左指针右移。
-            if (array[right] != 0) {
+            if (array[scanPoint] != 0) {
                 // 每次交换，都是将左指针的零与右指针的非零数交换
-                array[left] = array[right].also { array[right] = array[left] }
-                left++
+                array[non0point] = array[scanPoint].also { array[scanPoint] = array[non0point] }
+                non0point++
             }
-            right++
+            scanPoint++
         }
     }
 

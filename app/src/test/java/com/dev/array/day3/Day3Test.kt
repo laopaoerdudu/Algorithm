@@ -6,19 +6,19 @@ class Day3Test {
 
     @Test
     fun test() {
-        val array = arrayOf(1, 2, 3, 5, 7, 8, 9, 12, 15, 17, 20, 24)
+        val array = intArrayOf(1, 2, 3, 5, 7, 8, 9, 12, 15, 17, 20, 24)
         assert(4 == binarySearch(array, 7))
     }
 
-    private fun binarySearch(array: Array<Int>, value: Int): Int {
-        var left = 0
-        var right = array.lastIndex
+    private fun binarySearch(array: IntArray, value: Int): Int {
+        var low = 0
+        var high = array.lastIndex
 
-        while (left <= right) {
-            val middle = left + ((right - left) shr 1) // 防止溢出，移位也更高效
+        while (low <= high) {
+            val middle = low + ((high - low) shr 1) // 防止溢出，移位也更高效
             when {
                 array[middle] > value -> {
-                    right = middle - 1
+                    high = middle - 1
                 }
 
                 array[middle] == value -> {
@@ -26,7 +26,7 @@ class Day3Test {
                 }
 
                 else -> {
-                    left = middle + 1
+                    low = middle + 1
                 }
             }
         }

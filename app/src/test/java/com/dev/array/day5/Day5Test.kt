@@ -22,6 +22,8 @@ class Day5Test {
         array.forEachIndexed { i, value ->
             newArray[(i + k) % size] = value
         }
+
+        // 新数组的内容拷贝到旧数组
         System.arraycopy(newArray, 0, array, 0, size)
     }
 }
