@@ -21,6 +21,14 @@ class Day1Test {
     }
 
     private fun getResult(array: IntArray): Int {
-        return 0
+        var curent = 0
+        var vote = 0
+        array.forEach { value ->
+            if(vote == 0) {
+                curent = value
+            }
+            vote += (if(curent == value) 1 else -1)
+        }
+        return curent
     }
 }

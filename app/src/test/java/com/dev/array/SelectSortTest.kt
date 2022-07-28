@@ -17,6 +17,17 @@ class SelectSortTest {
     }
 
     private fun selectSort(array: Array<Int>) {
+        for(i in 0..array.lastIndex) {
+            var min = i
+            for (j in (i+1)..array.lastIndex) {
+                if(array[j] < array[min]) {
+                    min = j
+                }
+            }
 
+            if(i != min) {
+                array[i] = array[min].also { array[min] = array[i] }
+            }
+        }
     }
 }

@@ -17,5 +17,12 @@ class InsertSortTest {
     }
 
     private fun insertSort(array: Array<Int>) {
+        for(i in 1..array.lastIndex) {
+            for(j in i downTo 1) {
+                if(array[j] < array[j - 1]) {
+                    array[j] = array[j -1].also { array[j -1] = array[j] }
+                }
+            }
+        }
     }
 }

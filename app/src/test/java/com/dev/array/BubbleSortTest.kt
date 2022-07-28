@@ -20,6 +20,12 @@ class BubbleSortTest {
     }
 
     private fun bubbleSort(array: IntArray) {
-
+        for (i in 1..array.lastIndex) {
+            for (j in 0..(array.lastIndex - i)) {
+                if (array[j] > array[j + 1]) {
+                    array[j] = array[j + 1].also { array[j + 1] = array[j] }
+                }
+            }
+        }
     }
 }
