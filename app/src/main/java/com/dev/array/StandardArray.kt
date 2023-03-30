@@ -18,6 +18,7 @@ class StandardArray constructor(private val capacity: Int) {
             return false
         }
 
+        // 往右边走
         (count downTo index + 1).forEach {
             data[it] = data[it - 1]
         }
@@ -29,6 +30,7 @@ class StandardArray constructor(private val capacity: Int) {
     fun delete(index: Int): Boolean {
         if (index !in 0 until count) return false
 
+        // 往左边走
         (index + 1 until count).forEach {
             data[it - 1] = data[it]
         }
