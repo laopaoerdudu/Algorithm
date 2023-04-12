@@ -133,5 +133,10 @@ class SinglyLinkedList {
         println()
     }
 
-    class Node(var data: Int, var next: Node?)
+    class Node(var data: Int, var next: Node?) {
+
+        override fun toString(): String {
+            return "data: $data, next: ${next?.data}"
+        }
+    }
 }
