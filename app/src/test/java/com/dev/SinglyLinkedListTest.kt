@@ -72,4 +72,30 @@ class SinglyLinkedListTest {
         // THEN
         println(node)
     }
+
+    @Test
+    fun testInsertValueBeforeSpecNode() {
+        // GIVEN
+        linked.insertNodeToTail(1)
+        linked.insertNodeToTail(100)
+
+        // WHEN
+        linked.insertValueBeforeSpecNode(100, 10)
+
+        // THEN
+        linked.printAll() // 1, 10, 100
+    }
+
+    @Test
+    fun testInsertValueAfterSpecNode() {
+        // GIVEN
+        linked.insertNodeToTail(1)
+        linked.insertNodeToTail(100)
+
+        // WHEN
+        linked.insertValueAfterSpecNode(100, 1000)
+
+        // THEN
+        linked.printAll() // 1, 100, 1000
+    }
 }

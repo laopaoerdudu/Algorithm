@@ -47,6 +47,14 @@ class SinglyLinkedList {
         specNode.next = newNode
     }
 
+    fun insertValueBeforeSpecNode(nodeValue: Int, value: Int) {
+        // TODO: update it in next phase
+    }
+
+    fun insertValueAfterSpecNode(nodeValue: Int, value: Int) {
+        // TODO: update it in next phase
+    }
+
     fun insertNodeBeforeSpecNode(specNode: Node?, value: Int) {
         val newNode = Node(value, null)
         insertNodeBeforeSpecNode(specNode, newNode)
