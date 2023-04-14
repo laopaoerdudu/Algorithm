@@ -14,11 +14,10 @@ class StandardArray constructor(private val capacity: Int) {
             return false
         }
 
-        if (index !in 0 until count) {
+        if (index !in 0 until capacity) {
             return false
         }
 
-        // 往右边走
         (count downTo index + 1).forEach {
             data[it] = data[it - 1]
         }
@@ -28,13 +27,33 @@ class StandardArray constructor(private val capacity: Int) {
     }
 
     fun delete(index: Int): Boolean {
-        if (index !in 0 until count) return false
-
-        // 往左边走
-        (index + 1 until count).forEach {
+        if (index !in 0 until capacity) return false
+        (index + 1 until capacity).forEach {
             data[it - 1] = data[it]
         }
         --count
         return true
+    }
+
+    fun getArray(): String {
+        val sb = StringBuilder()
+        data.forEachIndexed { index, value ->
+            sb.append("$value")
+            if (index != data.lastIndex) {
+                sb.append(", ")
+            }
+        }
+        return sb.toString()
+    }
+
+    fun printArray() {
+        val sb = StringBuilder()
+        data.forEachIndexed { index, value ->
+            sb.append("$value")
+            if (index != data.lastIndex) {
+                sb.append(", ")
+            }
+        }
+        println(sb.toString())
     }
 }
