@@ -24,7 +24,7 @@ class StandardArrayTest {
 
     @Test
     fun test1() {
-        val array = arrayOfNulls<Int>(10)
+        val array = Array(10) { 0 }
         array[1] = 10
         array[3] = 30
         array[5] = 50

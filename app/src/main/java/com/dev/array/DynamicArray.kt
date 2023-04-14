@@ -13,31 +13,27 @@ class DynamicArray(private var capacity: Int = 10) {
     }
 
     fun remove(value: Int) {
-        if (this.usedSize >= 0) {
-            var target = -1
+        if (this.usedSize < 1) {
+            return
+        }
 
-            for (i in 0 until this.usedSize) {
-                if (this.data[i] == value) {
-                    target = i
-                    break
-                }
-            }
+        var target = -1
 
-            if (target >= 0) {
-                val size = this.usedSize - 1
-
-                // 把后续元素往前搬
-                for (i in target until size) {
-                    this.data[i] = this.data[i + 1]
-                }
-
-                // 最后一个元素位置置为空
-                this.data[size] = 0
-
-                // 更新已使用大小
-                this.usedSize = size
+        (0 until this.usedSize).forEach { index ->
+            if (this.data[index] == value) {
+                target = index
+                return@forEach
             }
         }
+
+        if (target == -1) {
+            return
+        }
+
+        (target + 1 until this.capacity).forEach { index ->
+            this.data[index - 1] = this.data[index]
+        }
+        --usedSize
     }
 
     fun set(index: Int, value: Int) {
@@ -55,6 +51,28 @@ class DynamicArray(private var capacity: Int = 10) {
         }
 
         throw IllegalArgumentException("index must be in rang of 0..${this.usedSize}")
+    }
+
+    fun getArray(): String {
+        val sb = StringBuilder()
+        data.forEachIndexed { index, value ->
+            sb.append("$value")
+            if (index != data.lastIndex) {
+                sb.append(", ")
+            }
+        }
+        return sb.toString()
+    }
+
+    fun printArray() {
+        val sb = StringBuilder()
+        data.forEachIndexed { index, value ->
+            sb.append("$value")
+            if (index != data.lastIndex) {
+                sb.append(", ")
+            }
+        }
+        println(sb.toString())
     }
 
     private fun checkIndex(index: Int): Boolean {
