@@ -2,15 +2,15 @@ package com.dev.array
 
 class StandardArray constructor(private val capacity: Int) {
     private val data: IntArray = IntArray(capacity)
-    private var count: Int = 0
+    private var usedSize: Int = 0
 
     fun find(index: Int): Int {
-        if (index !in 0 until count) return -1
+        if (index !in 0 until usedSize) return -1
         return data[index]
     }
 
     fun insert(index: Int, value: Int): Boolean {
-        if (count == capacity) {
+        if (usedSize == capacity) {
             return false
         }
 
@@ -18,11 +18,11 @@ class StandardArray constructor(private val capacity: Int) {
             return false
         }
 
-        (count downTo index + 1).forEach {
+        (usedSize downTo index + 1).forEach {
             data[it] = data[it - 1]
         }
         data[index] = value
-        ++count
+        ++usedSize
         return true
     }
 
@@ -31,7 +31,7 @@ class StandardArray constructor(private val capacity: Int) {
         (index + 1 until capacity).forEach {
             data[it - 1] = data[it]
         }
-        --count
+        --usedSize
         return true
     }
 

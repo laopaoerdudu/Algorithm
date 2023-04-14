@@ -66,7 +66,7 @@ class StandardArrayTest {
         array.delete(7)
 
         // THEN
-        array.printArray()
+        assertEquals("0, 10, 0, 30, 0, 50, 0, 0, 0, 0", array.getArray())
     }
 
     @Test
