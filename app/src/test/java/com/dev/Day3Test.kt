@@ -27,4 +27,17 @@ class Day3Test {
         }
         return false
     }
+
+    private fun hasCycleSolution(head: ListNode?): Boolean {
+        head ?: return false
+        var point: ListNode = head
+        val nodeSet = HashSet<ListNode>()
+        while (point != null) {
+            if (!nodeSet.add(point)) {
+                return true
+            }
+            point = point.next!!
+        }
+        return false
+    }
 }
