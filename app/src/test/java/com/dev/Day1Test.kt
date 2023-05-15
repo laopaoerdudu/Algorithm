@@ -45,6 +45,6 @@ class Day1Test {
                 else -> stack.pop()
             }
         }
-        return stack.isEmpty();
+        return stack.isEmpty()
     }
 }
