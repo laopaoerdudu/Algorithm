@@ -2,8 +2,8 @@ package com.dev
 
 class SampleBrowser(
     private var currentPage: String? = null,
-    private var backStack: LinkedListBasedStack = LinkedListBasedStack(),
-    private var forwardStack: LinkedListBasedStack = LinkedListBasedStack()
+    private var backStack: LinkedListStack = LinkedListStack(),
+    private var forwardStack: LinkedListStack = LinkedListStack()
 ) {
 
     fun canGoBack(): Boolean {

@@ -1,25 +1,38 @@
 package com.dev
 
 class LinkedListStack(
-    private var head: Node? = null
+    private var _size: Int = 0,
+    private var head: NodeStr? = null
 ) {
+    val size: Int
+        get() = _size
 
-    fun push(value: Int) {
-        val newNode = Node(value)
-        head?.let {
-            newNode.next = head
-            head = newNode
-        } ?: run {
-            this.head = newNode
-        }
+    fun clear() {
+        this.head = null
+        _size = 0
     }
 
-    fun pop(): Int {
-        head?.let {
-            val result = it.data
-            head = head?.next
-            return result
+    fun push(data: String?) {
+        head = NodeStr(data, this.head)
+        this._size++
+    }
+
+    fun pop(): String? {
+        this.head ?: return null
+        val result = head?.data
+        head = head?.next
+        if (_size > 0) {
+            _size--
         }
-        return -1
+        return result
+    }
+
+    fun printAll() {
+        println("Print stack:")
+        var cur: NodeStr? = this.head
+        while (cur != null) {
+            print("${cur.data}\t")
+            cur = cur.next
+        }
     }
 }

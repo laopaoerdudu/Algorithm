@@ -9,3 +9,7 @@
 - 用链表实现一个链式栈
 
 - 编程模拟实现一个浏览器的前进、后退功能
+
+- 最长有效的括号
+
+>https://leetcode.com/problems/longest-valid-parentheses/
