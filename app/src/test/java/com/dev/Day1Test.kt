@@ -17,8 +17,11 @@ class Day1Test {
 
     @Test
     fun test() {
+        // GIVEN
         val data = "()[]{}"
-        isValid(data)
+
+        // THEN
+        assert(isValid(data))
     }
 
     private fun isValid(data: String): Boolean {

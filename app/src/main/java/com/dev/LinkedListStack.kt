@@ -2,7 +2,7 @@ package com.dev
 
 class LinkedListStack(
     private var _size: Int = 0,
-    private var head: NodeStr? = null
+    private var head: Node? = null
 ) {
     val size: Int
         get() = _size
@@ -13,7 +13,7 @@ class LinkedListStack(
     }
 
     fun push(data: String?) {
-        head = NodeStr(data, this.head)
+        head = Node(data, this.head)
         this._size++
     }
 
@@ -29,7 +29,7 @@ class LinkedListStack(
 
     fun printAll() {
         println("Print stack:")
-        var cur: NodeStr? = this.head
+        var cur: Node? = this.head
         while (cur != null) {
             print("${cur.data}\t")
             cur = cur.next

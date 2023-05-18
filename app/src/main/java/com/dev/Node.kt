@@ -1,6 +1,6 @@
 package com.dev
 
 data class Node(
-    val data: Int,
+    val data: String?,
     var next: Node? = null
 )
