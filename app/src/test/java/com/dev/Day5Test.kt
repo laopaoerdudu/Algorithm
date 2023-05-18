@@ -15,7 +15,7 @@ class Day5Test {
         assert(6 == result)
     }
 
-    fun longestValidParentheses(data: String): Int {
+    private fun longestValidParentheses(data: String): Int {
         var max = 0
         val stack: Deque<Int> = LinkedList()
         stack.push(-1)
