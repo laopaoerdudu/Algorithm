@@ -28,7 +28,7 @@ class StandardArray constructor(private val capacity: Int) {
 
     fun delete(index: Int): Boolean {
         if (index !in 0 until capacity) return false
-        (index + 1 until num).forEach { i ->
+        (index + 1 until capacity).forEach { i ->
             array[i - 1] = array[i]
         }
         num--

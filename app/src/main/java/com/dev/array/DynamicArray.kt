@@ -1,26 +1,34 @@
 package com.dev.array
 
 class DynamicArray(private var capacity: Int = 10) {
-    private var usedSize = 0
-    private var data: Array<Int> = Array(this.capacity) { 0 }
+    private var num = 0
+    private var array: Array<String?> = Array(this.capacity) { null }
 
-    fun add(value: Int) {
-        if (this.usedSize == this.capacity - 1) {
-            this.doubleCapacity()
+    fun add(index: Int, value: String): Boolean {
+        if (isEligible(index).not()) {
+            return false
         }
-        this.data[this.usedSize] = value
-        ++this.usedSize
+        // Enlarge space
+        if (num == capacity - 1) {
+            doubleCapacity()
+        }
+        (num downTo index + 1).forEach { i ->
+            array[i] = array[i - 1]
+        }
+        array[index] = value
+        num++
+        return true
     }
 
-    fun remove(value: Int) {
-        if (this.usedSize < 1) {
+    fun remove(value: String?) {
+        if (this.num < 1) {
             return
         }
 
         var target = -1
 
-        (0 until this.usedSize).forEach { index ->
-            if (this.data[index] == value) {
+        (0 until this.num).forEach { index ->
+            if (this.array[index] == value) {
                 target = index
                 return@forEach
             }
@@ -31,63 +39,69 @@ class DynamicArray(private var capacity: Int = 10) {
         }
 
         (target + 1 until this.capacity).forEach { index ->
-            this.data[index - 1] = this.data[index]
+            this.array[index - 1] = this.array[index]
         }
-        --usedSize
+        --num
     }
 
-    fun set(index: Int, value: Int) {
-        if (this.checkIndex(index)) {
-            this.data[index] = value
-            return
-        }
-
-        throw IllegalArgumentException("index must be in rang of 0..${this.usedSize}")
+    fun size(): Int {
+        return num
     }
 
-    fun get(index: Int): Int? {
-        if (this.checkIndex(index)) {
-            return this.data[index]
-        }
-
-        throw IllegalArgumentException("index must be in rang of 0..${this.usedSize}")
+    fun isEmpty(): Boolean {
+        return num == 0
     }
 
-    fun getArray(): String {
-        val sb = StringBuilder()
-        data.forEachIndexed { index, value ->
-            sb.append("$value")
-            if (index != data.lastIndex) {
-                sb.append(", ")
+    /** Update value by the given index */
+    fun set(index: Int, value: String): Boolean {
+        if (isEligible(index).not()) {
+            return false
+        }
+        array[index] = value
+        return true
+    }
+
+    fun get(index: Int): String? {
+        if (isEligible(index).not()) {
+            return null
+        }
+        return array[index]
+    }
+
+    fun contains(value: String?): Boolean {
+        array.forEach {
+            if (it == value) {
+                return true
             }
         }
-        return sb.toString()
+        return false
     }
 
-    fun printArray() {
-        val sb = StringBuilder()
-        data.forEachIndexed { index, value ->
-            sb.append("$value")
-            if (index != data.lastIndex) {
-                sb.append(", ")
+    fun find(value: String?): Int {
+        (0..array.lastIndex).forEach { i ->
+            if (array[i] == value) {
+                return i
             }
         }
-        println(sb.toString())
-    }
-
-    private fun checkIndex(index: Int): Boolean {
-        return index >= 0 && index < this.usedSize
+        return -1
     }
 
     private fun doubleCapacity() {
         if (this.capacity < MAX_CAPACITY) {
             this.capacity = (this.capacity * 2).coerceAtMost(MAX_CAPACITY)
-            val newArray = Array(this.capacity) { 0 }
-            for (i in 0 until this.usedSize) {
-                newArray[i] = this.data[i]
+            val newArray = Array<String?>(this.capacity) { null }
+            for (i in 0 until this.num) {
+                newArray[i] = this.array[i]
             }
-            this.data = newArray
+            this.array = newArray
         }
+    }
+
+    private fun isEligible(index: Int): Boolean {
+        if (index !in 0 until capacity) {
+            return false
+        }
+        return true
     }
 
     companion object {
