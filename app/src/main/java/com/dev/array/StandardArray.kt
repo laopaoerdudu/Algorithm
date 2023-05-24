@@ -1,16 +1,16 @@
 package com.dev.array
 
 class StandardArray constructor(private val capacity: Int) {
-    private val data: IntArray = IntArray(capacity)
-    private var usedSize: Int = 0
+    private val array: IntArray = IntArray(capacity)
+    private var num: Int = 0
 
     fun find(index: Int): Int {
-        if (index !in 0 until usedSize) return -1
-        return data[index]
+        if (index !in 0 until num) return -1
+        return array[index]
     }
 
     fun insert(index: Int, value: Int): Boolean {
-        if (usedSize == capacity) {
+        if (num == capacity) {
             return false
         }
 
@@ -18,28 +18,28 @@ class StandardArray constructor(private val capacity: Int) {
             return false
         }
 
-        (usedSize downTo index + 1).forEach {
-            data[it] = data[it - 1]
+        (num downTo index + 1).forEach { i ->
+            array[i] = array[i - 1]
         }
-        data[index] = value
-        ++usedSize
+        array[index] = value
+        num++
         return true
     }
 
     fun delete(index: Int): Boolean {
         if (index !in 0 until capacity) return false
-        (index + 1 until capacity).forEach {
-            data[it - 1] = data[it]
+        (index + 1 until num).forEach { i ->
+            array[i - 1] = array[i]
         }
-        --usedSize
+        num--
         return true
     }
 
     fun getArray(): String {
         val sb = StringBuilder()
-        data.forEachIndexed { index, value ->
+        array.forEachIndexed { index, value ->
             sb.append("$value")
-            if (index != data.lastIndex) {
+            if (index != array.lastIndex) {
                 sb.append(", ")
             }
         }
@@ -48,9 +48,9 @@ class StandardArray constructor(private val capacity: Int) {
 
     fun printArray() {
         val sb = StringBuilder()
-        data.forEachIndexed { index, value ->
+        array.forEachIndexed { index, value ->
             sb.append("$value")
-            if (index != data.lastIndex) {
+            if (index != array.lastIndex) {
                 sb.append(", ")
             }
         }
