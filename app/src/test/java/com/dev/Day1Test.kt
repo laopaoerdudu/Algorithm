@@ -1,6 +1,7 @@
 package com.dev
 
 import org.junit.Test
+import kotlin.time.measureTime
 
 /**
  * 斐波那契数列求解办法：
@@ -12,7 +13,8 @@ class Day1Test {
 
     @Test
     fun test() {
-       // println(f2(7))
+        println(f1(7))
+        println(f2(7))
         println(f3(7))
     }
 
@@ -20,7 +22,6 @@ class Day1Test {
      * 随着 n 的增大，这个算法时间复杂度会指数级增长
      */
     private fun f1(n: Int): Int {
-        if (n <= 2) return n
         return when (n) {
             0 -> 1
             in 1..2 -> n
