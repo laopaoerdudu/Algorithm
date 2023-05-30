@@ -9,15 +9,14 @@ class BubbleSortTest {
     @Test
     fun test() {
         // GIVEN
-        var array = intArrayOf(32, 45, 20, 1, 44, 26, 9, 3, 34, 27, 21)
+        var array = intArrayOf(3, 5, 4, 1, 2, 6)
 
         // WHEN
         bubbleSort(array)
 
         // THEN
-        assertEquals("1, 3, 9, 20, 21, 26, 27, 32, 34, 44, 45", array.joinToString())
-        // assertEquals(5, num)
-        println("num: $num")
+        assertEquals("1, 2, 3, 4, 5, 6", array.joinToString())
+        assertEquals(4, num)
     }
 
     private fun bubbleSort(array: IntArray) {
