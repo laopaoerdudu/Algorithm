@@ -28,16 +28,15 @@ class QuickSort {
 
     private fun getPartition(array: IntArray, head: Int, tail: Int): Int {
         var pivot = head
-
-        // After this round of forEach, we can get pivot
         (head until tail).forEach { i ->
             if (array[i] < array[tail]) {
-                if (pivot != i) {
+                if (i != pivot) {
                     array[pivot] = array[i].also { array[i] = array[pivot] }
                 }
                 pivot++
             }
         }
+        /** 因为都是和 array[tail] 比，所以拿到 pivot 之后，我们就能确定 pivot 左边的数据都比 array[tail] 小，所以交换两者的值 */
         array[pivot] = array[tail].also { array[tail] = array[pivot] }
         return pivot
     }
