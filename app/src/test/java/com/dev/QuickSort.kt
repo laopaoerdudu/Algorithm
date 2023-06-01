@@ -27,17 +27,18 @@ class QuickSort {
     }
 
     private fun getPartition(array: IntArray, head: Int, tail: Int): Int {
-        var pivot = array[tail]
-        var point = head
+        var pivot = head
+
+        // After this round of forEach, we can get pivot
         (head until tail).forEach { i ->
-            if (array[i] < pivot) {
-                if (point != i) {
-                    array[point] = array[i].also { array[i] = array[point] }
+            if (array[i] < array[tail]) {
+                if (pivot != i) {
+                    array[pivot] = array[i].also { array[i] = array[pivot] }
                 }
-                point++
+                pivot++
             }
         }
-        array[point] = array[tail].also { array[tail] = array[point] }
-        return point
+        array[pivot] = array[tail].also { array[tail] = array[pivot] }
+        return pivot
     }
 }
