@@ -1,6 +1,5 @@
 package com.dev
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /** 如何用快排思想在 O(n)内查找第 K 大元素？ */
