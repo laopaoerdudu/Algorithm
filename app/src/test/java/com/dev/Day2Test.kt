@@ -14,16 +14,15 @@ class Day2Test {
     }
 
     private fun reverseList(head: ListNode?): ListNode? {
-        if (head == null) {
-            return null
-        }
-        var cur: ListNode? = head
         var prev: ListNode? = null
+        var cur: ListNode? = head
         while (cur != null) {
-           val temp = cur.next
+            var nextNode = cur.next
+            // 翻转
             cur.next = prev
-            prev = cur // prev 移动到 cur
-            cur = temp
+            // 移动指针
+            prev = cur
+            cur = nextNode
         }
         return prev
     }
