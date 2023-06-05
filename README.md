@@ -15,7 +15,7 @@ feature/queue-poc | Queue practice | Done |
 feature/stack-poc | Stack practice | Done |
 feature/recursion-poc | Recursion practice | Done |
 feature/sort-poc | Sort practice | Done |
-feature/thread-poc | Thread practice | TODO |
+feature/thread-poc | Multiple Thread practice | TODO |
 
 ### How to use
 
