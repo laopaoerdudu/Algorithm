@@ -1,5 +1,7 @@
 Algorithm
 
+--
+
 Welcome to Roman's Algorithm repository.
 
 ## Branches
@@ -17,9 +19,13 @@ feature/thread-poc | Thread practice | TODO |
 
 ### How to use
 
+--
+
 Please check the `test` folder source code and run it on local.
 
 ### Supplement
+
+--
 
 **We learn data structures and algorithms in order to apply them to actual development, so I don't think it is necessary to define them.**
 
