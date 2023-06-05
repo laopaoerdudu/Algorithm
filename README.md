@@ -21,7 +21,7 @@ feature/thread-poc | Thread practice | TODO |
 
 ---
 
-Please check the `test` folder source code and run it on local.
+Please check the `app/src/test` folder source code and run it on local.
 
 ### Supplement
 
