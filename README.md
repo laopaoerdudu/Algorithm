@@ -1,8 +1,30 @@
+Algorithm
 
-**我们学习数据结构和算法是为了应用到实际的开发中的，所以，我觉得没必去死抠定义。**
+***
 
-**我们学习数据结构和算法，要学习它的由来、特性、适用的场景以及它能解决的问题。**
+Welcome to Roman's Algorithm repository.
 
-[二叉树的基本操作](https://mp.weixin.qq.com/s/ONKJyusGCIE2ctwT9uLv9g)
+## Branches
 
-[算法练习](https://blog.51cto.com/u_15410237/category3.html)
+Branch | Use | Status
+:-- | --: | --: |
+master | LEETCode practice | Developing |
+feature/array-poc | Array practice | Done |
+feature/link-poc | LinkedList practice | Done |
+feature/queue-poc | Queue practice | Done |
+feature/stack-poc | Stack practice | Done |
+feature/recursion-poc | Recursion practice | Done |
+feature/sort-poc | Sort practice | Done |
+feature/thread-poc | Thread practice | TODO |
+
+### How to use
+
+Please check the `test` folder source code and run it on local.
+
+### Supplement
+
+**We learn data structures and algorithms in order to apply them to actual development, so I don't think it is necessary to define them.**
+
+**When we learn data structures and algorithms, we need to learn its origin, characteristics, applicable scenarios and problems it can solve.**
+
+
