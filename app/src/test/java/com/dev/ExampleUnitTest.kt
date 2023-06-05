@@ -38,4 +38,18 @@ class ExampleUnitTest {
             print("$key ") // 1 2 3 5
         }
     }
+
+    @Test
+    fun test() {
+        // GIVEN
+        val sb = "84591"
+
+        // WHEN
+        val result = sb.toCharArray().sortedByDescending {
+            it.code
+        }.joinToString("")
+
+        // THEN
+        assertEquals("98541", result)
+    }
 }
