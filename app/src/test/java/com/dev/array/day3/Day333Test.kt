@@ -26,7 +26,7 @@ class Day333Test {
             when {
                 array[middle] > value -> hight = middle - 1
                 array[middle] < value -> low = middle + 1
-                else {
+                else -> {
                     if (middle == array.lastIndex || array[middle + 1] != value) {
                         return middle
                     } else {
