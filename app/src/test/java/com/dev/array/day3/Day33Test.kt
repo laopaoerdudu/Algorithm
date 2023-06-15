@@ -23,15 +23,17 @@ class Day33Test {
 
         while (low <= high) {
             val middle = low + ((high - low) shr 1) // 防止溢出，移位也更高效
-            if(array[middle] >= value) {
-                high = middle - 1
-            } else {
-                low = middle + 1
+            when {
+                array[middle] > value -> high = middle - 1
+                array[middle] < value -> low = middle + 1
+                else -> {
+                    if (middle == 0 || array[middle - 1] != value) {
+                        return middle
+                    } else {
+                        high = middle - 1 // 继续往左边找
+                    }
+                }
             }
-        }
-
-        if (low < array.size && array[low] == value) {
-            return low
         }
         return -1
     }
