@@ -2,72 +2,55 @@ package com.dev
 
 import org.junit.Test
 
-/**
- * 斐波那契数列求解办法：
- * 大致有这样的一个数列：1, 1, 2, 3, 5, 8, 13，。。。
- * 其中第一、第二项固定为1，后面每一项都是前面两项之和。
- * 使用数学公式就是 f(n) = f(n-1)+f(n-2)
- */
 class Day1Test {
 
     @Test
     fun test() {
-        println(f1(7))
-        println(f2(7))
-        println(f3(7))
+
+        val map = hashMapOf(
+            "key" to "wwe"
+        )
+        map["key"] = "Roman"
+
+        println("value: ${map["key"]}")
     }
 
     /**
-     * 随着 n 的增大，这个算法时间复杂度会指数级增长
+     * LinkedHashMap 也是通过 散列表 和 链表 组合在一起实现的。
+     * 实际上，它不仅支持按照插入顺序遍历数据，还支持按照访问顺序来遍历数据。
      */
-    private fun f1(n: Int): Int {
-        return when (n) {
-            0 -> 1
-            in 1..2 -> n
-            else -> {
-                f1(n - 1) + f1(n - 2)
-            }
+    @Test
+    fun test1() {
+        val map: HashMap<String, Int> = LinkedHashMap()
+        map["3"] = 11
+        map["1"] = 12
+        map["5"] = 23
+        map["2"] = 22
+        map.forEach { (key, _) ->
+            print("$key ")
         }
     }
 
-    /**
-     * 从 1 到 n，依次计算f(n)，然后将计算结果存入一个数组（这里需要申请一个数组存储结算结果），最后返回f(n)的结果，问题就解决了。
-     */
-    private fun f2(n: Int): Int {
-        return when (n) {
-            0 -> 1
-            in 1..2 -> n
-            else -> {
-                val array: Array<Int> = Array(n) { 1 }
-                // 1, 1, 2, 3, 5, 8, 13，。。。
-                array[1] = 1
-                array[2] = 2
-                (3 until n).forEach { i ->
-                    array[i] = array[i - 1] + array[i - 2]
-                }
-                array[n - 1]
-            }
-        }
-    }
+    @Test
+    fun test2() {
+        // 10是初始大小，0.75是装载因子，true是表示按照访问时间排序
+        val map: HashMap<String, Int> = LinkedHashMap(10, 0.75f, true)
 
-    /**
-     * 动态规划算法：
-     * 时间复杂度还是 O(n)，而空间复杂度变为了 O(1)。
-     */
-    private fun f3(n: Int): Int {
-        return when (n) {
-            0 -> 1
-            in 1..2 -> n
-            else -> {
-                var prePre = 1
-                var pre = 2
-                (3 until n).forEach { _ ->
-                    // 1, 1, 2, 3, 5, 8, 13
-                    pre += prePre
-                    prePre = pre - prePre
-                }
-                pre
-            }
+        /** 每次调用 put() 函数，往 LinkedHashMap 中添加数据的时候，都会将数据添加到链表的尾部 */
+        map["3"] = 11
+        map["1"] = 12
+        map["5"] = 23
+        map["2"] = 22
+
+        /** 先查找这个键是否已经有了，然后，再将已经存在的 (3,11) 删除，并且将新的 (3,26) 放到链表的尾部。 */
+        map["3"] = 26
+
+        /** 访问到 key 为 5 的数据的时候，我们将被访问到的数据移动到链表的尾部。 */
+        map["5"]
+
+        map.forEach { (key, _) ->
+            /** 最后打印出来的数据是 1，2，3，5 */
+            print("$key ")
         }
     }
 }
