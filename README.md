@@ -1,34 +1,15 @@
-Algorithm
+## 字符串匹配算法
 
----
+### BF 算法 (暴力匹配算法)
 
-Welcome to David's Algorithm repository.
+比方说，我们在字符串 A 中查找字符串 B，我们把主串的长度记作 n，模式串的长度记作 m。因为我们是在主串中查找模式串，所以 n>m。
 
-## Branches
+拿模式串与主串中所有的子串匹配，看是否有能匹配的子串。所以，时间复杂度也比较高，是 O(n*m)，n、m 表示主串和模式串的长度。
+对于处理小规模的字符串匹配很好用。
 
-Branch | Use | Status
-:-- | --: | --: |
-master | LEETCode practice | Developing |
-feature/array-poc | Array practice | Done |
-feature/link-poc | LinkedList practice | Done |
-feature/queue-poc | Queue practice | Done |
-feature/stack-poc | Stack practice | Done |
-feature/recursion-poc | Recursion practice | Done |
-feature/sort-poc | Sort practice | Done |
-feature/thread-poc | Multiple Thread practice | TODO |
+### RK 算法
 
-### How to use
-
----
-
-Please check the `app/src/test` folder source code and run it on local.
-
-### Supplement
-
----
-
-**We learn data structures and algorithms in order to apply them to actual development, so I don't think it is necessary to define them.**
-
-**When we learn data structures and algorithms, we need to learn its origin, characteristics, applicable scenarios and problems it can solve.**
-
-
+即对每个子串分别求哈希值，然后拿子串的哈希值与模式串的哈希值比较，减少了比较的时间。
+所以，理想情况下，RK 算法的时间复杂度是 O(n)，跟 BF 算法相比，效率提高了很多。
+不过这样的效率取决于哈希算法的设计方法，如果存在冲突的情况下，时间复杂度可能会退化。
+极端情况下，哈希算法大量冲突，时间复杂度就退化为 O(n*m)。
