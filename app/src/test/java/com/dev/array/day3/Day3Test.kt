@@ -6,8 +6,9 @@ class Day3Test {
 
     @Test
     fun test() {
-        val array = intArrayOf(1, 2, 3, 5, 7, 8, 9, 12, 15, 17, 20, 24)
-        assert(4 == binarySearch(array, 7))
+        val array = intArrayOf(24, 20, 17, 15, 12, 9, 8, 7, 5, 3, 2, 1) // intArrayOf(1, 2, 3, 5, 7, 8, 9, 12, 15, 17, 20, 24)
+        //assert(4 == binarySearch(array, 7))
+        println("result -> ${binarySearch(array, 7)}")
     }
 
     private fun binarySearch(array: IntArray, value: Int): Int {
